@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Button from '../objects/button';
 
 export default class OptionsScene extends Phaser.Scene {
   constructor() {
@@ -6,8 +7,7 @@ export default class OptionsScene extends Phaser.Scene {
   }
 
   create() {
-    this.musicOn = true;
-    this.soundOn = true;
+    this.soundStat = this.sys.game.globals.soundStat;
 
     this.text = this.add.text(300, 100, 'Options', { fontSize: 40 });
     this.musicButton = this.add.image(200, 200, 'checkedBox');
@@ -20,34 +20,33 @@ export default class OptionsScene extends Phaser.Scene {
     this.soundButton.setInteractive();
 
     this.musicButton.on('pointerdown', () => {
-      this.musicOn = !this.musicOn;
+      this.soundStat.musicOn = !this.soundStat.musicOn;
       this.updateAudio();
     });
 
     this.soundButton.on('pointerdown', () => {
-      this.soundOn = !this.soundOn;
+      this.soundStat.soundOn = !this.soundStat.soundOn;
       this.updateAudio();
     });
 
-    this.menuButton = this.add.sprite(400, 500, 'blueButton1').setInteractive();
-    this.menuText = this.add.text(0, 0, 'Menu', { fontSize: '32px', fill: '#fff' });
-    Phaser.Display.Align.In.Center(this.menuText, this.menuButton);
-
-    this.menuButton.on('pointerdown', () => {
-      this.scene.start('Title');
-    });
-
+    this.menuButton = new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'Menu', 'Title');
     this.updateAudio();
   }
 
   updateAudio() {
-    if (this.musicOn === false) {
+    if (this.soundStat.musicOn === false) {
       this.musicButton.setTexture('box');
+      this.sys.game.globals.bgMusic.stop();
+      this.soundStat.bgMusicPlaying = false;
     } else {
       this.musicButton.setTexture('checkedBox');
+      if (this.soundStat.bgMusicPlaying === false) {
+        this.sys.game.globals.bgMusic.play();
+        this.soundStat.bgMusicPlaying = true;
+      }
     }
 
-    if (this.soundOn === false) {
+    if (this.soundStat.soundOn === false) {
       this.soundButton.setTexture('box');
     } else {
       this.soundButton.setTexture('checkedBox');
