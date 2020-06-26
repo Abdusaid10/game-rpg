@@ -33,7 +33,7 @@ export default class BattleScene extends Phaser.Scene {
     if (this.units[this.index] instanceof PlayerCharacter) {
       this.events.emit('PlayerSelect', this.index);
     } else {
-      let r = 0;
+      let r;
       do {
         r = Math.floor(Math.random() * this.heroes.length);
       } while (!this.heroes[r].living);
@@ -54,13 +54,6 @@ export default class BattleScene extends Phaser.Scene {
   exitBattle() {
     this.scene.sleep('UIScene');
     this.scene.switch('WorldScene');
-  }
-
-  wake() {
-    this.scene.run('UIScene');
-    this.time.addEvent({
-      delay: 2000, callback: this.exitBattle, callbackScope: this,
-    });
   }
 
   checkEndBattle() {
@@ -111,7 +104,7 @@ export default class BattleScene extends Phaser.Scene {
     this.units = this.heroes.concat(this.enemies);
 
     this.index = -1;
-    // this.scene.launch('UIScene');
-    this.scene.run('UIScene');
+    this.scene.launch('UIScene');
+    // this.scene.run('UIScene');
   }
 }

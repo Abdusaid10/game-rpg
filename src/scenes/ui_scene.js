@@ -5,17 +5,16 @@ const Message = new Phaser.Class({
   Extends: Phaser.GameObjects.Container,
 
   initialize: function Message(scene, events) {
-    Phaser.GameObjects.Container.call(this, scene, 160, 30);
+    Phaser.GameObjects.Container.call(this, scene, 160, 20);
     const graphics = this.scene.add.graphics();
     this.add(graphics);
     graphics.lineStyle(1, 0xffffff, 0.8);
     graphics.fillStyle(0x031f4c, 0.3);
     graphics.strokeRect(100, 115, 300, 150);
     graphics.fillRect(100, 115, 300, 150);
-    this.text = new Phaser.GameObjects.Text(scene, 250, 190, '',
-      {
-        color: '#ffffff', align: 'center', fontSize: 23, worldWrap: { width: 260, useAdvancedWrap: true },
-      });
+    this.text = new Phaser.GameObjects.Text(scene, 250, 190, '', {
+      color: '#ffffff', align: 'center', fontSize: 23, wordWrap: { width: 260, useAdvancedWrap: true },
+    });
     this.add(this.text);
     this.text.setOrigin(0.5);
     events.on('Message', this.showMessage, this);
@@ -56,7 +55,6 @@ export default class UIScene extends Phaser.Scene {
     this.graphics.fillRect(255, 400, 250, 200);
     this.graphics.strokeRect(508, 400, 290, 200);
     this.graphics.fillRect(508, 400, 290, 200);
-    console.log('UI Scene');
 
     this.menus = this.add.container();
 
@@ -72,9 +70,6 @@ export default class UIScene extends Phaser.Scene {
 
     this.battleScene = this.scene.get('BattleScene');
 
-    this.remapHeroes();
-    this.remapEnemies();
-
     this.input.keyboard.on('keydown', this.onKeyInput, this);
 
     this.battleScene.events.on('PlayerSelect', this.onPlayerSelect, this);
@@ -83,10 +78,12 @@ export default class UIScene extends Phaser.Scene {
 
     this.events.on('Enemy', this.onEnemy, this);
 
+    this.sys.events.on('wake', this.createMenu, this);
+
     this.message = new Message(this, this.battleScene.events);
     this.add.existing(this.message);
 
-    this.battleScene.nextTurn();
+    this.createMenu();
   }
 
   onEnemy(index) {
@@ -119,16 +116,24 @@ export default class UIScene extends Phaser.Scene {
   }
 
   onKeyInput(event) {
-    if (this.currentMenu) {
+    if (this.currentMenu && this.currentMenu.selected) {
       if (event.code === 'ArrowUp') {
         this.currentMenu.moveSelectionUp();
       } else if (event.code === 'ArrowDown') {
         this.currentMenu.moveSelectionDown();
+      // eslint-disable-next-line no-empty
       } else if (event.code === 'ArrowRight' || event.code === 'Shift') {
 
       } else if (event.code === 'Space' || event.code === 'ArrowLeft') {
         this.currentMenu.confirm();
       }
     }
+  }
+
+  createMenu() {
+    this.remapHeroes();
+    this.remapEnemies();
+
+    this.battleScene.nextTurn();
   }
 }

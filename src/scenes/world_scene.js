@@ -9,6 +9,7 @@ export default class WorldScene extends Phaser.Scene {
     // this.add.image(400, 300, 'logo');
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
+    // eslint-disable-next-line no-unused-vars
     const grass = map.createStaticLayer('Grass', tiles, 0, 0);
 
     const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
@@ -65,6 +66,7 @@ export default class WorldScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
 
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.sys.events.on('wake', this.wake, this);
   }
 
   update() {
@@ -95,6 +97,17 @@ export default class WorldScene extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
+  }
+
+  wake() {
+    // this.scene.run('UIScene');
+    // this.time.addEvent({
+    //   delay: 2000, callback: this.exitBattle, callbackScope: this,
+    // });
+    this.cursors.left.reset();
+    this.cursors.right.reset();
+    this.cursors.up.reset();
+    this.cursors.down.reset();
   }
 
   onMeetEnemy(player, zone) {

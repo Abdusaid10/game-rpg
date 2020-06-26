@@ -31,6 +31,7 @@ const Menu = new Phaser.Class({
     this.heroes = heroes;
     this.x = x;
     this.y = y;
+    this.selected = false;
   },
 
   addMenuItem(unit) {
@@ -80,6 +81,7 @@ const Menu = new Phaser.Class({
   deselect() {
     this.menuItems[this.menuItemIndex].deselect();
     this.menuItemIndex = 0;
+    this.selected = false;
   },
   clear() {
     for (let i = 0; i < this.menuItems.length; i += 1) this.menuItems[i].destroy();
