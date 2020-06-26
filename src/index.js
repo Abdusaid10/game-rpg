@@ -7,6 +7,8 @@ import TitleScene from './scenes/title_scene';
 import OptionsScene from './scenes/options_scene';
 import LeaderboardScene from './scenes/leaderboard_scene';
 import CreditsScene from './scenes/credits_scene';
+import UIScene from './scenes/ui_scene';
+import BattleScene from './scenes/battle_scene';
 import Sound from './soundHandle';
 
 class Game extends Phaser.Game {
@@ -23,6 +25,8 @@ class Game extends Phaser.Game {
     this.scene.add('Laderboard', LeaderboardScene);
     this.scene.add('Credits', CreditsScene);
     this.scene.add('WorldScene', WorldScene);
+    this.scene.add('UIScene', UIScene);
+    this.scene.add('BattleScene', BattleScene);
     this.scene.start('Boot');
   }
 }
