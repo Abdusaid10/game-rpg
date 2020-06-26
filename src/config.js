@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 
 const config = {
   type: Phaser.AUTO,
-  parent: 'phaser-example',
+  parent: 'content',
   width: 800,
   height: 600,
   autoCenter: true,
