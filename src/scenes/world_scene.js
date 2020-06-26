@@ -6,7 +6,6 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   create() {
-    // this.add.image(400, 300, 'logo');
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('spritesheet', 'tiles');
     // eslint-disable-next-line no-unused-vars
@@ -100,10 +99,6 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   wake() {
-    // this.scene.run('UIScene');
-    // this.time.addEvent({
-    //   delay: 2000, callback: this.exitBattle, callbackScope: this,
-    // });
     this.cursors.left.reset();
     this.cursors.right.reset();
     this.cursors.up.reset();

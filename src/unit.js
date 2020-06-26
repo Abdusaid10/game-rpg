@@ -32,7 +32,6 @@ const Unit = new Phaser.Class({
       this.living = false;
       this.visible = false;
       this.menuItem = null;
-      // this.alive = false;
     }
   },
 });

@@ -10,11 +10,6 @@ export default class BattleScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor('rgba(0, 200, 0, 0.5)');
 
     this.startBattle();
-    // const timeEvent = this.time.addEvent({
-    //   dalay: 2000,
-    //   callback: this.exitBattle,
-    //   callbackScope: this,
-    // });
 
     this.sys.events.on('wake', this.startBattle, this);
   }
@@ -29,7 +24,6 @@ export default class BattleScene extends Phaser.Scene {
       if (this.index >= this.units.length) this.index = 0;
     } while (!this.units[this.index].living);
 
-    // if (this.units[this.index]) {
     if (this.units[this.index] instanceof PlayerCharacter) {
       this.events.emit('PlayerSelect', this.index);
     } else {
@@ -41,7 +35,6 @@ export default class BattleScene extends Phaser.Scene {
       this.units[this.index].attack(this.heroes[r]);
       this.time.addEvent({ delay: 2000, callback: this.nextTurn, callbackScope: this });
     }
-    // }
   }
 
   receivePlayerSelection(action, target) {
@@ -105,6 +98,5 @@ export default class BattleScene extends Phaser.Scene {
 
     this.index = -1;
     this.scene.launch('UIScene');
-    // this.scene.run('UIScene');
   }
 }
