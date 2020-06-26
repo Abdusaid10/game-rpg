@@ -15,10 +15,10 @@ const MenuItem = new Phaser.Class({
     this.setColor('#ffffff');
   },
 
-  // unitKilled() {
-  //   this.active = false;
-  //   this.visible = false;
-  // },
+  unitKilled() {
+    this.active = false;
+    this.visible = false;
+  },
 });
 
 const Menu = new Phaser.Class({
@@ -37,23 +37,30 @@ const Menu = new Phaser.Class({
     const menuItem = new MenuItem(0, this.menuItems.length * 20, unit, this.scene);
     this.menuItems.push(menuItem);
     this.add(menuItem);
+    return menuItem;
   },
 
   moveSelectionUp() {
     this.menuItems[this.menuItemIndex].deselect();
-    this.menuItemIndex -= 1;
-    if (this.menuItemIndex < 0) {
-      this.menuItemIndex = this.menuItems.length - 1;
-    }
+    do {
+      this.menuItemIndex -= 1;
+      if (this.menuItemIndex < 0) {
+        this.menuItemIndex = this.menuItems.length - 1;
+      }
+    } while (!this.menuItems[this.menuItemIndex].active);
+
     this.menuItems[this.menuItemIndex].select();
   },
 
   moveSelectionDown() {
     this.menuItems[this.menuItemIndex].deselect();
-    this.menuItemIndex += 1;
-    if (this.menuItemIndex >= this.menuItems.length) {
-      this.menuItemIndex = 0;
-    }
+    do {
+      this.menuItemIndex += 1;
+      if (this.menuItemIndex >= this.menuItems.length) {
+        this.menuItemIndex = 0;
+      }
+    } while (!this.menuItems[this.menuItemIndex].active);
+
     this.menuItems[this.menuItemIndex].select();
   },
 
@@ -61,7 +68,13 @@ const Menu = new Phaser.Class({
     if (!index) index = 0;
     this.menuItems[this.menuItemIndex].deselect();
     this.menuItemIndex = index;
+    while (!this.menuItems[this.menuItemIndex].active) {
+      this.menuItemIndex += 1;
+      if (this.menuItemIndex >= this.menuItems.length) this.menuItemIndex = 0;
+      if (this.menuItemIndex === index) return;
+    }
     this.menuItems[this.menuItemIndex].select();
+    this.selected = true;
   },
 
   deselect() {
@@ -79,8 +92,9 @@ const Menu = new Phaser.Class({
 
     for (let i = 0; i < units.length; i += 1) {
       const unit = units[i];
-      this.addMenuItem(unit.type);
+      unit.setMenuItem(this.addMenuItem(unit.type));
     }
+    this.menuItemIndex = 0;
   },
 
   confirm() {
