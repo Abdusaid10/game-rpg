@@ -12,32 +12,33 @@ export default class WorldScene extends Phaser.Scene {
     const grass = map.createStaticLayer('Grass', tiles, 0, 0);
 
     const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
+    // obstacles.setScale(2);
     obstacles.setCollisionByExclusion([-1]);
 
     // add player
     this.player = this.physics.add.sprite(50, 100, 'player', 6);
-
+    this.player.setScale(0.5);
     this.anims.create({
       key: 'left',
-      frames: this.anims.generateFrameNumbers('player', { frames: [1, 7, 1, 13] }),
+      frames: this.anims.generateFrameNumbers('player', { frames: [4, 3, 4, 5] }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
       key: 'right',
-      frames: this.anims.generateFrameNumbers('player', { frames: [1, 7, 1, 13] }),
+      frames: this.anims.generateFrameNumbers('player', { frames: [7, 6, 7, 8] }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
       key: 'up',
-      frames: this.anims.generateFrameNumbers('player', { frames: [2, 8, 2, 14] }),
+      frames: this.anims.generateFrameNumbers('player', { frames: [10, 9, 10, 11] }),
       frameRate: 10,
       repeat: -1,
     });
     this.anims.create({
       key: 'down',
-      frames: this.anims.generateFrameNumbers('player', { frames: [0, 6, 0, 12] }),
+      frames: this.anims.generateFrameNumbers('player', { frames: [1, 0, 1, 2] }),
       frameRate: 10,
       repeat: -1,
     });
@@ -57,12 +58,22 @@ export default class WorldScene extends Phaser.Scene {
 
     // zones for enemies
     this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
-    for (let i = 0; i < 30; i += 1) {
-      const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
-      const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
-      this.spawns.create(x, y, 20, 20);
-    }
-    this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
+    this.enemies = this.add.group({
+      key: 'dragonblue',
+      repeat: 20,
+      setXY: {
+        x: Phaser.Math.RND.between(0, this.physics.world.bounds.width),
+        y: Phaser.Math.RND.between(0, this.physics.world.bounds.height),
+        stepX: 80,
+        stepY: 20,
+      },
+    });
+    // for (let i = 0; i < 2; i += 1) {
+    //   const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    //   const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+    //   this.spawns.create(x, y, 10, 20);
+    // }
+    this.physics.add.overlap(this.player, this.enemies, this.onMeetEnemy, false, this);
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.sys.events.on('wake', this.wake, this);
@@ -86,8 +97,10 @@ export default class WorldScene extends Phaser.Scene {
     }
 
     if (this.cursors.left.isDown) {
+      // this.player.flipX = true;
       this.player.anims.play('left', true);
     } else if (this.cursors.right.isDown) {
+      // this.player.flipX = false;
       this.player.anims.play('right', true);
     } else if (this.cursors.up.isDown) {
       this.player.anims.play('up', true);
@@ -107,8 +120,8 @@ export default class WorldScene extends Phaser.Scene {
 
   onMeetEnemy(player, zone) {
     // move zone
-    zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
-    zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+    // zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    // zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
     // shake the world
     this.cameras.main.shake(300);

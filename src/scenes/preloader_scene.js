@@ -77,8 +77,8 @@ export default class PreloaderScene extends Phaser.Scene {
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
     // load assets needed in our game
-    this.load.image('blueButton1', 'assets/ui/blue_button02.png');
-    this.load.image('blueButton2', 'assets/ui/blue_button03.png');
+    this.load.image('blueButton1', 'assets/ui/button1.png');
+    this.load.image('blueButton2', 'assets/ui/button2.png');
     this.load.image('phaserLogo', 'assets/logo.png');
     this.load.image('box', 'assets/ui/grey_box.png');
     this.load.image('checkedBox', 'assets/ui/blue_boxCheckmark.png');
@@ -88,9 +88,13 @@ export default class PreloaderScene extends Phaser.Scene {
 
     this.load.tilemapTiledJSON('map', 'assets/map/map.json');
 
-    this.load.spritesheet('player', 'assets/RPG_assets.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('mage', 'assets/RPG_assets.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('player', 'assets/player.png', { frameWidth: 32, frameHeight: 32 });
     this.load.image('dragonblue', 'assets/dragonblue.png');
     this.load.image('dragonOrrange', 'assets/dragonorrange.png');
+    this.load.image('dragons', 'assets/DRAGONS5.png');
+    this.load.image('main_bckg', 'assets/bg.png');
+    this.load.image('battle_bckg', 'assets/background.jpg');
   }
 
   init() {

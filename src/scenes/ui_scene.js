@@ -46,21 +46,23 @@ export default class UIScene extends Phaser.Scene {
   }
 
   create() {
+    this.add.image(0, 0, 'battle_bckg').setOrigin(0).setScale(1.5).setScrollFactor(1);
+
     this.graphics = this.add.graphics();
     this.graphics.lineStyle(1, 0xffffff);
     this.graphics.fillStyle(0x031f4c, 1);
-    this.graphics.strokeRect(2, 400, 250, 200);
-    this.graphics.fillRect(2, 400, 250, 200);
-    this.graphics.strokeRect(255, 400, 250, 200);
-    this.graphics.fillRect(255, 400, 250, 200);
-    this.graphics.strokeRect(508, 400, 290, 200);
-    this.graphics.fillRect(508, 400, 290, 200);
+    this.graphics.strokeRect(20, 430, 240, 170);
+    this.graphics.fillRect(20, 430, 240, 170);
+    this.graphics.strokeRect(280, 430, 240, 170);
+    this.graphics.fillRect(280, 430, 240, 170);
+    this.graphics.strokeRect(540, 430, 240, 170);
+    this.graphics.fillRect(540, 430, 240, 170);
 
     this.menus = this.add.container();
 
-    this.heroesMenu = new HeroesMenu(550, 410, this);
-    this.actionsMenu = new ActionsMenu(280, 410, this);
-    this.enemiesMenu = new EnemiesMenu(10, 410, this);
+    this.heroesMenu = new HeroesMenu(550, 435, this);
+    this.actionsMenu = new ActionsMenu(290, 435, this);
+    this.enemiesMenu = new EnemiesMenu(30, 435, this);
 
     this.currentMenu = this.actionsMenu;
 

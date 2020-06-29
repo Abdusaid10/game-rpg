@@ -7,8 +7,6 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   create() {
-    this.cameras.main.setBackgroundColor('rgba(0, 200, 0, 0.5)');
-
     this.startBattle();
 
     this.sys.events.on('wake', this.startBattle, this);
@@ -78,16 +76,20 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   startBattle() {
-    const warrior = new PlayerCharacter(this, 600, 200, 'player', 1, 'Warrior', 100, 20);
+    const warrior = new PlayerCharacter(this, 600, 200, 'player', 4, 'Warrior', 100, 20);
+    warrior.flipX = false;
     this.add.existing(warrior);
 
-    const mage = new PlayerCharacter(this, 600, 300, 'player', 4, 'Mage', 80, 8);
+    const mage = new PlayerCharacter(this, 600, 300, 'mage', 4, 'Mage', 80, 8);
+    mage.setScale(2);
     this.add.existing(mage);
 
-    const dragonblue = new Enemy(this, 100, 200, 'dragonblue', null, 'Dragon', 50, 3);
+    const dragonblue = new Enemy(this, 100, 200, 'dragonblue', null, 'Dragon 1', 50, 3);
+    dragonblue.setScale(3);
     this.add.existing(dragonblue);
 
-    const dragonOrrange = new Enemy(this, 100, 300, 'dragonOrrange', null, 'Dragon2', 50, 3);
+    const dragonOrrange = new Enemy(this, 100, 300, 'dragonOrrange', null, 'Dragon 2', 50, 3);
+    dragonOrrange.setScale(3);
     this.add.existing(dragonOrrange);
 
     this.heroes = [warrior, mage];

@@ -8,6 +8,7 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    // this.add.image(0, 0, 'main_bckg').setOrigin(0).setScale(1);
     this.playButton = new Button(this, config.width / 2, config.height / 2 - 100, 'blueButton1', 'blueButton2', 'Play', 'WorldScene');
 
     this.optionsButton = new Button(this, config.width / 2, config.height / 2, 'blueButton1', 'blueButton2', 'Options', 'Options');
