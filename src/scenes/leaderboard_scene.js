@@ -1,16 +1,18 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Phaser from 'phaser';
+import Button from '../objects/button';
 
 export default class LeaderboardScene extends Phaser.Scene {
   constructor() {
     super('Leaderboard');
   }
 
-  preload() {
-
-  }
-
   create() {
-    
+    this.add.image(0, 0, 'battle_bckg').setOrigin(0);
+
+    this.title = this.add.text(0, 0, 'Leaderboard', { fontSize: 40 });
+
+    this.menuButton = new Button(this, 400, 500, 'button1', 'button2', 'Menu', 'Title');
+
   }
 }

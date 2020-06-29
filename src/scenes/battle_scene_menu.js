@@ -28,7 +28,6 @@ const Menu = new Phaser.Class({
     Phaser.GameObjects.Container.call(this, scene, x, y);
     this.menuItems = [];
     this.menuItemIndex = 0;
-    this.heroes = heroes;
     this.x = x;
     this.y = y;
     this.selected = false;

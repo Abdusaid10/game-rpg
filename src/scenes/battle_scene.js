@@ -31,7 +31,7 @@ export default class BattleScene extends Phaser.Scene {
       } while (!this.heroes[r].living);
 
       this.units[this.index].attack(this.heroes[r]);
-      this.time.addEvent({ delay: 2000, callback: this.nextTurn, callbackScope: this });
+      this.time.addEvent({ delay: 3000, callback: this.nextTurn, callbackScope: this });
     }
   }
 
@@ -40,11 +40,6 @@ export default class BattleScene extends Phaser.Scene {
       this.units[this.index].attack(this.enemies[target]);
     }
     this.time.addEvent({ dalay: 3000, callback: this.nextTurn, callbackScope: this });
-  }
-
-  exitBattle() {
-    this.scene.sleep('UIScene');
-    this.scene.switch('WorldScene');
   }
 
   checkEndBattle() {
