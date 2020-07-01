@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { PlayerCharacter, Enemy } from '../objects/game';
+import { incScore } from '../score';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -13,8 +14,13 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   nextTurn() {
-    if (this.checkEndBattle()) {
-      this.endBattle();
+    const checkStat = this.checkEndBattle();
+    if (checkStat.stat === 'victory') {
+      this.endBattle('victory');
+      return;
+    }
+    if (checkStat.stat === 'gameOver') {
+      this.endBattle('gameOver');
       return;
     }
     do {
@@ -54,10 +60,13 @@ export default class BattleScene extends Phaser.Scene {
     for (let i = 0; i < this.heroes.length; i += 1) {
       if (this.heroes[i].living) gameOver = false;
     }
+
+    if (victory) return { stat: 'victory' };
+    if (gameOver) return { stat: 'gameOver' };
     return victory || gameOver;
   }
 
-  endBattle() {
+  endBattle(stat) {
     this.heroes.length = 0;
     this.enemies.length = 0;
     for (let i = 0; i < this.units.length; i += 1) {
@@ -65,25 +74,38 @@ export default class BattleScene extends Phaser.Scene {
     }
     this.units.length = 0;
 
-    this.scene.sleep('UIScene');
+    this.index = -1;
 
-    this.scene.switch('WorldScene');
+    this.scene.remove('UIScene');
+    this.scene.remove('BattleScene');
+
+    if (stat === 'gameOver') {
+      this.scene.stop('WorldScene');
+      this.scene.start('GameOver');
+    } else if (stat === 'victory') {
+      incScore(20);
+      this.scene.wake('WorldScene');
+    }
+
+    // this.scene.sleep('UIScene');
+
+    // this.scene.switch('WorldScene');
   }
 
   startBattle() {
-    const warrior = new PlayerCharacter(this, 600, 200, 'player', 4, 'Warrior', 100, 20);
-    warrior.flipX = false;
+    this.score = 0;
+    const warrior = new PlayerCharacter(this, 600, 200, 'player', 'Warrior', 100, 20);
+    // warrior.flipX = false;
     this.add.existing(warrior);
 
-    const mage = new PlayerCharacter(this, 600, 300, 'mage', 4, 'Mage', 80, 8);
-    mage.setScale(2);
+    const mage = new PlayerCharacter(this, 600, 300, 'mage', 'Mage', 80, 8);
     this.add.existing(mage);
 
-    const dragonblue = new Enemy(this, 100, 200, 'dragonblue', null, 'Dragon 1', 50, 3);
+    const dragonblue = new Enemy(this, 100, 200, 'dragonblue', 'Dragon 1', 50, 3);
     dragonblue.setScale(3);
     this.add.existing(dragonblue);
 
-    const dragonOrrange = new Enemy(this, 100, 300, 'dragonOrrange', null, 'Dragon 2', 50, 3);
+    const dragonOrrange = new Enemy(this, 100, 300, 'dragonOrrange', 'Dragon 2', 50, 3);
     dragonOrrange.setScale(3);
     this.add.existing(dragonOrrange);
 

@@ -1,4 +1,7 @@
 import Phaser from 'phaser';
+import { getScore } from '../score';
+import BattleScene from './battle_scene';
+import UIScene from './ui_scene';
 
 export default class WorldScene extends Phaser.Scene {
   constructor() {
@@ -14,6 +17,14 @@ export default class WorldScene extends Phaser.Scene {
     const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0);
     // obstacles.setScale(2);
     obstacles.setCollisionByExclusion([-1]);
+
+    this.graphics = this.add.graphics();
+    this.graphics.lineStyle(1, 0xffffff, 0.8);
+    this.graphics.fillStyle(0x031f4c, 0.3);
+    this.graphics.strokeRect(5, 5, 100, 15);
+    this.graphics.fillRect(5, 5, 100, 15);
+
+    this.scoreText = this.add.text(6, 6, `Score: ${getScore()}`, { fontSize: '14px', fill: '#fff' });
 
     this.anims.create({
       key: 'left',
@@ -63,7 +74,7 @@ export default class WorldScene extends Phaser.Scene {
     // zones for enemies
     this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Sprite });
 
-    for (let i = 0; i < 2; i += 1) {
+    for (let i = 0; i < 10; i += 1) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
       this.spawns.create(x, y, this.getEnemySprite());
@@ -109,6 +120,8 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   wake() {
+    this.scoreText.setText(`Score: ${getScore()}`);
+
     this.cursors.left.reset();
     this.cursors.right.reset();
     this.cursors.up.reset();
@@ -123,7 +136,12 @@ export default class WorldScene extends Phaser.Scene {
     // shake the world
     this.cameras.main.shake(300);
 
+    this.input.stopPropagation();
     // start battle
-    this.scene.switch('BattleScene');
+    this.scene.add('BattleScene', BattleScene);
+    this.scene.add('UIScene', UIScene);
+
+    this.scene.sleep('WorldScene');
+    this.scene.launch('BattleScene');
   }
 }

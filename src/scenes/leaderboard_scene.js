@@ -8,9 +8,9 @@ export default class LeaderboardScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(0, 0, 'battle_bckg').setOrigin(0);
+    this.add.image(0, 0, 'battle_bckg').setOrigin(0).setScale(2);
 
-    this.title = this.add.text(0, 0, 'Leaderboard', { fontSize: 40 });
+    this.title = this.add.text(280, 100, 'Leaderboard', { fontSize: 40 });
 
     this.menuButton = new Button(this, 400, 500, 'button1', 'button2', 'Menu', 'Title');
 

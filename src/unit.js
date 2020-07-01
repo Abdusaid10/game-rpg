@@ -3,8 +3,8 @@ import Phaser from 'phaser';
 const Unit = new Phaser.Class({
   Extends: Phaser.GameObjects.Sprite,
 
-  initialize: function Unit(scene, x, y, texture, frame, type, hp, damage) {
-    Phaser.GameObjects.Sprite.call(this, scene, x, y, texture, frame);
+  initialize: function Unit(scene, x, y, texture, type, hp, damage) {
+    Phaser.GameObjects.Sprite.call(this, scene, x, y, texture);
     this.type = type;
     this.hp = hp;
     this.maxHp = this.hp;
