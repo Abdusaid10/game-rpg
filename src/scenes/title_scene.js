@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import config from '../config';
+import config from '../models/config';
 import Button from '../objects/button';
 
 export default class TitleScene extends Phaser.Scene {
@@ -9,7 +9,7 @@ export default class TitleScene extends Phaser.Scene {
 
   create() {
     // this.add.image(0, 0, 'main_bckg').setOrigin(0).setScale(1);
-    this.playButton = new Button(this, config.width / 2, config.height / 2 - 150, 'button1', 'button2', 'Play', 'WorldScene');
+    this.playButton = new Button(this, config.width / 2, config.height / 2 - 150, 'button1', 'button2', 'Play', 'InputScene');
 
     this.optionsButton = new Button(this, config.width / 2, config.height / 2 - 50, 'button1', 'button2', 'Options', 'Options');
 
