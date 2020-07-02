@@ -1,4 +1,5 @@
-import Phaser from 'phaser';
+/* eslint-disable no-undef */
+import 'phaser';
 import config from './modules/config';
 import WorldScene from './scenes/world_scene';
 import BootScene from './scenes/boot_scene';

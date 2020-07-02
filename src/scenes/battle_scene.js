@@ -1,7 +1,8 @@
-import Phaser from 'phaser';
+import 'phaser';
 import { PlayerCharacter, Enemy } from '../objects/game';
 import { incScore } from '../modules/score';
 
+// eslint-disable-next-line no-undef
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super('BattleScene');

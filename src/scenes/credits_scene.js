@@ -1,4 +1,5 @@
-import Phaser from 'phaser';
+/* eslint-disable no-undef */
+import 'phaser';
 import config from '../modules/config';
 
 export default class CreditsScene extends Phaser.Scene {

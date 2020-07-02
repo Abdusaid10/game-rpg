@@ -1,4 +1,5 @@
-import Phaser from 'phaser';
+/* eslint-disable no-undef */
+import 'phaser';
 
 const Unit = new Phaser.Class({
   Extends: Phaser.GameObjects.Sprite,

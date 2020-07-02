@@ -1,6 +1,7 @@
-import Phaser from 'phaser';
+import 'phaser';
 import { setName } from '../modules/userName';
 
+// eslint-disable-next-line no-undef
 export default class InputScene extends Phaser.Scene {
   constructor() {
     super('InputScene');

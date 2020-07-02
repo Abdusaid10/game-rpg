@@ -1,4 +1,5 @@
-import Phaser from 'phaser';
+/* eslint-disable no-undef */
+import 'phaser';
 import { HeroesMenu, ActionsMenu, EnemiesMenu } from './battle_scene_menu';
 
 const Message = new Phaser.Class({

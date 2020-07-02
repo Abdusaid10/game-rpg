@@ -1,4 +1,5 @@
-import Phaser from 'phaser';
+/* eslint-disable no-undef */
+import 'phaser';
 import Button from '../objects/button';
 import config from '../modules/config';
 import { getData } from '../modules/scoreAPI';

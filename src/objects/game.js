@@ -1,4 +1,5 @@
-import Phaser from 'phaser';
+/* eslint-disable no-undef */
+import 'phaser';
 import Unit from '../modules/unit';
 
 const Enemy = new Phaser.Class({
