@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { PlayerCharacter, Enemy } from '../objects/game';
-import { incScore } from '../score';
+import { incScore } from '../models/score';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -94,18 +94,18 @@ export default class BattleScene extends Phaser.Scene {
 
   startBattle() {
     this.score = 0;
-    const warrior = new PlayerCharacter(this, 600, 200, 'player', 'Warrior', 100, 20);
+    const warrior = new PlayerCharacter(this, 600, 200, 'player', 'Warrior', 12, 10);
     // warrior.flipX = false;
     this.add.existing(warrior);
 
-    const mage = new PlayerCharacter(this, 600, 300, 'mage', 'Mage', 80, 8);
+    const mage = new PlayerCharacter(this, 600, 300, 'mage', 'Mage', 12, 8);
     this.add.existing(mage);
 
-    const dragonblue = new Enemy(this, 100, 200, 'dragonblue', 'Dragon 1', 50, 3);
+    const dragonblue = new Enemy(this, 100, 200, 'dragonblue', 'Dragon 1', 50, 6);
     dragonblue.setScale(3);
     this.add.existing(dragonblue);
 
-    const dragonOrrange = new Enemy(this, 100, 300, 'dragonOrrange', 'Dragon 2', 50, 3);
+    const dragonOrrange = new Enemy(this, 100, 300, 'dragonOrrange', 'Dragon 2', 50, 6);
     dragonOrrange.setScale(3);
     this.add.existing(dragonOrrange);
 
