@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { PlayerCharacter, Enemy } from '../objects/game';
-import { incScore } from '../models/score';
+import { incScore } from '../modules/score';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {

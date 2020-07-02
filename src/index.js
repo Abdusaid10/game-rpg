@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import config from './models/config';
+import config from './modules/config';
 import WorldScene from './scenes/world_scene';
 import BootScene from './scenes/boot_scene';
 import PreloaderScene from './scenes/preloader_scene';
@@ -7,7 +7,7 @@ import TitleScene from './scenes/title_scene';
 import OptionsScene from './scenes/options_scene';
 import LeaderboardScene from './scenes/leaderboard_scene';
 import CreditsScene from './scenes/credits_scene';
-import Sound from './models/soundHandle';
+import Sound from './modules/soundHandle';
 import GameOverScene from './scenes/game_over_scene';
 import InputScene from './scenes/input_scene';
 

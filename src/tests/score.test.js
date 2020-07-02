@@ -1,4 +1,4 @@
-import { incScore, getScore, resetScore } from '../models/score';
+import { incScore, getScore, resetScore } from '../modules/score';
 
 describe('Tests for scoring', () => {
   test('It should increment score', () => {

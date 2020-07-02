@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import config from '../models/config';
+import config from '../modules/config';
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {

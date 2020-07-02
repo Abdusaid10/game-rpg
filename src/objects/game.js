@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Unit from '../models/unit';
+import Unit from '../modules/unit';
 
 const Enemy = new Phaser.Class({
   Extends: Unit,

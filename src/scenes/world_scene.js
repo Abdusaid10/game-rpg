@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { getScore } from '../models/score';
+import { getScore } from '../modules/score';
 import BattleScene from './battle_scene';
 import UIScene from './ui_scene';
 

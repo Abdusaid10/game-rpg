@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
-import config from '../models/config';
+import config from '../modules/config';
 import Button from '../objects/button';
-import { getScore, resetScore } from '../models/score';
-import { getName } from '../models/userName';
-import { postData } from '../models/scoreAPI';
+import { getScore, resetScore } from '../modules/score';
+import { getName } from '../modules/userName';
+import { postData } from '../modules/scoreAPI';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor() {

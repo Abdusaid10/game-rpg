@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { setName } from '../models/userName';
+import { setName } from '../modules/userName';
 
 export default class InputScene extends Phaser.Scene {
   constructor() {
