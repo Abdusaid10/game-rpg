@@ -14,6 +14,17 @@ To move around the world you can use arrow keys on the keyboard.
 When you meet a dragon the scene will switch to the battle scene. On the right side of the screen there will be two dragons, and on the left side a Warrior and Mage. You will start of with the Warrior, to attack you can click left arrow key or space button on the keyboard. Also you can choose which dragon to attack by clicking arrow up and down keyboards.
 
 When the battle is over and if you defeat the dragons you score will be increased and scene will switch back to world scene. However, if you loose the battle the scene will switch to the game over scene.
+
+### Screenshots of Scenes 
+<img src="./screenshots/main.png">
+
+<img src="./screenshots/input.png">
+
+<img src="./screenshots/world.png">
+<img src="./screenshots/battle.png">
+<img src="./screenshots/options.png">
+<img src="./screenshots/gameOver.png">
+
 ## Built With
 * JavaScript, Phaser 3
 * Webpack, Eslint, Jest
