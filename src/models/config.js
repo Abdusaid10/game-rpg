@@ -5,7 +5,7 @@ const config = {
   parent: 'content',
   width: 800,
   height: 600,
-  backgroundColor: '#222288',
+  backgroundColor: '#211112',
   dom: {
     createContainer: true,
   },

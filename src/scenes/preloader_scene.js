@@ -93,7 +93,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.spritesheet('player', 'assets/player.png', { frameWidth: 32, frameHeight: 32 });
     this.load.image('dragonblue', 'assets/dragonblue.png');
     this.load.image('dragonOrrange', 'assets/dragonorrange.png');
-    this.load.image('main_bckg', 'assets/bg.png');
     this.load.image('battle_bckg', 'assets/background.jpg');
   }
 
