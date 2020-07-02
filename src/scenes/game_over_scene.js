@@ -27,8 +27,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     const name = getName();
     const score = getScore();
-
-    postData(`${name}`, `${score}`);
+    postData(name, score);
 
     this.menuButton = new Button(this, 400, 500, 'button1', 'button2', 'Menu', 'Title');
     resetScore();

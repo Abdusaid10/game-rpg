@@ -8,6 +8,8 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   create() {
+    this.add.image(0, 0, 'battle_bckg').setOrigin(0).setScale(1.5).setScrollFactor(1);
+
     this.startBattle();
 
     this.sys.events.on('wake', this.startBattle, this);
@@ -86,16 +88,11 @@ export default class BattleScene extends Phaser.Scene {
       incScore(20);
       this.scene.wake('WorldScene');
     }
-
-    // this.scene.sleep('UIScene');
-
-    // this.scene.switch('WorldScene');
   }
 
   startBattle() {
     this.score = 0;
-    const warrior = new PlayerCharacter(this, 600, 200, 'player', 'Warrior', 12, 10);
-    // warrior.flipX = false;
+    const warrior = new PlayerCharacter(this, 600, 200, 'player', 'Warrior', 12, 20);
     this.add.existing(warrior);
 
     const mage = new PlayerCharacter(this, 600, 300, 'mage', 'Mage', 12, 8);

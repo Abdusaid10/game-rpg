@@ -2,7 +2,7 @@ let name = 'Name';
 
 const setName = (newName) => {
   name = newName;
-  return name;
+  return `${name}`;
 };
 
 const getName = () => name;

@@ -46,8 +46,6 @@ export default class UIScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(0, 0, 'battle_bckg').setOrigin(0).setScale(1.5).setScrollFactor(1);
-
     this.graphics = this.add.graphics();
     this.graphics.lineStyle(1, 0xffffff);
     this.graphics.fillStyle(0x031f4c, 1);

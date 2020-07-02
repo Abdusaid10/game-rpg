@@ -1,6 +1,5 @@
 import 'regenerator-runtime';
 
-// const fetch = require('node-fetch');
 const proxyurl = 'https://cors-anywhere.herokuapp.com/';
 const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games';
 const id = '5uXf60H5JF4rfAIdWb23';
@@ -9,8 +8,8 @@ const initData = async () => {
   const title = JSON.stringify({
     name: 'Dragon fighter',
   });
-  let data = {};
-  const setData = {
+
+  const headers = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -19,9 +18,8 @@ const initData = async () => {
     body: title,
   };
   try {
-    const response = await fetch(proxyurl + baseUrl, setData, { mode: 'no-cors' });
-    data = await response.json();
-    console.log(data.result);
+    const response = await fetch(proxyurl + baseUrl, headers, { mode: 'no-cors' });
+    const data = await response.json();
     return data.result;
   } catch (err) {
     return err;
@@ -48,18 +46,34 @@ const postData = async (name, score) => {
   return result.result;
 };
 
+const sort = (data) => {
+  const arr = [];
+
+  for (let i = 0; i < data.length; i += 1) {
+    arr.push([data[i].user, data[i].score]);
+  }
+  arr.sort((a, b) => b[1] - a[1]);
+
+  return arr;
+};
+
 const getData = async () => {
-  const data = {
+  const headers = {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application-json',
     },
   };
-  const response = await fetch(`${proxyurl}${baseUrl}/${id}/scores/`, data);
-  const result = await response.json();
 
-  return result.result;
+  const response = await fetch(`${proxyurl}${baseUrl}/${id}/scores/`, headers);
+  const data = await response.json();
+
+  return sort(data.result);
 };
 
-export { initData, postData, getData };
+export {
+  initData,
+  postData,
+  getData,
+};

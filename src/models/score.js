@@ -9,7 +9,7 @@ const incScore = (points) => {
 
 const resetScore = () => {
   score = 0;
-  return `Score reset to ${score}`;
+  return `${score}`;
 };
 
 export { getScore, incScore, resetScore };
