@@ -24,7 +24,7 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'index.html'),
-          to: path.resolve(__dirname, 'dist')
+          to: path.resolve(__dirname, 'dist'),
         },
         {
           from: path.resolve(__dirname, 'assets', '**', '*'),
