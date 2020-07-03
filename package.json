@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "webpack -p",
     "test": "jest",
     "build": "webpack",
     "dev": "webpack-dev-server --open",
