@@ -8,7 +8,15 @@ A warrior wants to defeat all the dragons in the world as thye are destroying ev
 A warrior will lead and search for the dragons and whenever he meets a dragon his friend mage will come to help him to defeat the dragons.
 
 ## How to Play
+### Movement in the world 
 To move around the world you can use arrow keys on the keyboard.
+Left arrow key - move player to the left
+Right arrow key - move player to the right
+Up arrow key - move player up
+Down arrow key - move player down
+
+#### Attack 
+Left arrow / Space key - attack dragon (See the description bellow when you can attack this line)
 
 ### Battle
 When you meet a dragon the scene will switch to the battle scene. On the right side of the screen there will be two dragons, and on the left side a Warrior and Mage. You will start of with the Warrior, to attack you can click left arrow key or space button on the keyboard. Also you can choose which dragon to attack by clicking arrow up and down keyboards.
@@ -51,7 +59,7 @@ npm build
 ```
 > Run Locally
 ```bash
-npm start
+npm run dev
 ```
 
 > Open in browser
