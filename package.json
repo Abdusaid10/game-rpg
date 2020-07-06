@@ -5,8 +5,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "dev": "webpack-dev-server --open",
-    "watch": "jest --watch *js"
+    "start": "webpack-dev-server",
+    "watch": "webpack --watch"
   },
   "jest": {
     "verbose": true,
