@@ -2,6 +2,9 @@
   "name": "game-rpg",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "test": "jest",
     "build": "webpack",
@@ -41,8 +44,5 @@
     "lodash": "^4.17.15",
     "phaser": "^3.23.0",
     "regenerator-runtime": "^0.13.5"
-  },
-  "engines": {
-    "node": "12.13"
   }
 }
