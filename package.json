@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack-dev-serve",
+    "start": "webpack-dev-server",
     "heroku-postbuild": "webpack -p"
   },
   "jest": {
