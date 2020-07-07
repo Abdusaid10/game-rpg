@@ -4,16 +4,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: './src/index.js',
-    'production-dependencies': ['phaser'],
   },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: 'dist',
-    filename: '[name].js',
-    chunkFilename: 'production-dependencies.bundle.js',
+    filename: 'app.bundle.js',
   },
 
   devServer: {
