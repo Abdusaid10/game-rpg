@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack-dev-serve"
+    "start": "webpack-dev-serve",
+    "heroku-postbuild": "webpack -p"
   },
   "jest": {
     "verbose": true,

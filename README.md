@@ -59,7 +59,7 @@ npm build
 ```
 > Run Locally
 ```bash
-npm run dev
+npm start
 ```
 
 > Open in browser
