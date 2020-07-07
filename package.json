@@ -2,9 +2,6 @@
   "name": "game-rpg",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {
-    "node": "12.13.0"
-  },
   "scripts": {
     "test": "jest",
     "build": "webpack",
